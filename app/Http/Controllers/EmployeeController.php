@@ -306,4 +306,12 @@ class EmployeeController extends Controller
             ->route('employees.index')
             ->with('success', 'Employee deleted successfully.');
     }
+public function search(Request $request)
+{
+    $employees = Employee::where('first_name', 'LIKE', '%' . $request->search . '%')
+        ->get();
+
+    return response()->json($employees);
+}
+
 }
